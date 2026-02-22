@@ -2,23 +2,30 @@
 <html>
         <head>
                 <meta charset="UTF-8" />
-                <title>Этальный (пост-)панк</title>
-                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+                <title>{{ post.title }}</title>
+                <!--<script>
+                        window.MathJax = {
+                                loader: {
+                                        load: ['[custom]/xypic.js']
+                                },
+                                tex: {
+                                        packages: {'[+]': ['xypic']}
+                                }
+                        };
+                </script>-->
+                <script type="text/javascript" async src="{% static 'mathjax/es5/tex-mml-chtml.js' %}"></script>
+
                 <link rel="stylesheet" href="{% static 'css/blog.css' %}">
         </head>
         <body>
                 <header class="page-header">
-                        <h1>Этальный (пост-)панк</h1>
+                        <h1>{{ post.title }}</h1>
                 </header>
-                <main class="blog-feed">
-                        {% for post in posts %}
-                        <article class="post-card" onclick="window.location.href='/posts/{{ post.handle }}'"
-                                                   style="cursor:pointer">
-                                        <p class="time-stamp">{{ post.published_date }}</p>
-                                        <h2>{{ post.title }}</h2>
-                                        <p>{{ post.abstract|linebreaksbr }}</p>
+                <main class="blog-post">
+                                <article class="post-text">
+                                        <p class="time-stamp">{{ post.published_date|date:"d-m-Y H:i" }}</p>
+                                        <p>{{ post.text|linebreaksbr }}</p>
                                 </article>
-                        {% endfor %}
                 </main>
         </body>
 </head>
