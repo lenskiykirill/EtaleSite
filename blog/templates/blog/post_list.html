@@ -1,0 +1,24 @@
+{% load static %}
+<html>
+        <head>
+                <meta charset="UTF-8" />
+                <title>Этальный (пост-)панк</title>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+                <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        </head>
+        <body>
+                <header class="page-header">
+                        <h1>Этальный (пост-)панк</h1>
+                </header>
+                <main class="blog-feed">
+                        {% for post in posts %}
+                        <article class="post-card" onclick="window.location.href='/posts/{{ post.handle }}'"
+                                                   style="cursor:pointer">
+                                        <p class="time-stamp">{{ post.published_date|date:"d-m-Y H:i"}}</p>
+                                        <h2>{{ post.title }}</h2>
+                                        <p>{{ post.abstract|linebreaksbr }}</p>
+                                </article>
+                        {% endfor %}
+                </main>
+        </body>
+</head>
