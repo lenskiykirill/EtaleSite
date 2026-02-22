@@ -11,5 +11,4 @@ def post_list(request):
 def view_post(request, handle):
     post = get_object_or_404(Post, handle=handle)
     post.text = safestring.mark_safe(post.text)
-    print(post)
     return render(request, 'blog/view_post.html', {'post':post})
